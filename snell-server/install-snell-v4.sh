@@ -207,7 +207,7 @@ install_dependencies() {
 # 生成随机端口和密码
 generate_config() {
     local port=$(shuf -i 10000-65535 -n 1)
-    local psk=$(openssl rand -base64 16)
+    local psk="$(openssl rand -base64 16)"
 
     mkdir -p "$CONFIG_DIR"
 
