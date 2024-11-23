@@ -1,81 +1,3 @@
-# 添加 IP 获取函数
-get_ip_address() {
-    local type=$1  # ipv4 或 ipv6
-    local ip=""
-    local services=(
-        "ip.sb"
-        "ifconfig.co"
-        "api.ipify.org"
-        "icanhazip.com"
-    )
-    
-    if [ "$type" = "ipv4" ]; then
-        # 首先尝试从网卡获取
-        ip=$(ip -4 addr show scope global | grep inet | awk '{print $2}' | cut -d/ -f1 | head -n 1)
-        if [ -z "$ip" ]; then
-            # 如果网卡获取失败，尝试在线服务
-            for service in "${services[@]}"; do
-                ip=$(curl -s4 $service 2>/dev/null)
-                if [ ! -z "$ip" ] && [[ $ip =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-                    break
-                fi
-            done
-        fi
-    elif [ "$type" = "ipv6" ]; then
-        # 首先尝试从网卡获取
-        ip=$(ip -6 addr show scope global | grep inet6 | awk '{print $2}' | cut -d/ -f1 | head -n 1)
-        if [ -z "$ip" ]; then
-            # 如果网卡获取失败，尝试在线服务
-            for service in "${services[@]}"; do
-                ip=$(curl -s6 $service 2>/dev/null)
-                if [ ! -z "$ip" ] && [[ $ip =~ ^[0-9a-fA-F:]+$ ]]; then
-                    break
-                fi
-            done
-        fi
-    fi
-    
-    echo "$ip"
-}
-
-# 修改 print_service_details 函数中的 IP 获取部分
-print_service_details() {
-    if systemctl is-active --quiet ${SERVICE_NAME}; then
-        local config_file="${CONFIG_DIR}/config.conf"
-        local port=$(grep "listen" "$config_file" | cut -d: -f2)
-        local psk=$(grep "psk" "$config_file" | cut -d= -f2 | tr -d ' ')
-        local public_ipv4=$(get_ip_address "ipv4")
-        local public_ipv6=$(get_ip_address "ipv6")
-        
-        # ... (前面的代码保持不变)
-        
-        # 网络配置信息
-        echo -e "${BOLD}${CYAN}🌐 Network Configuration${NC}"
-        echo -e "  ${BOLD}Local Port${NC}        🔌 ${port}"
-        if [ ! -z "$public_ipv4" ]; then
-            echo -e "  ${BOLD}IPv4 Address${NC}     📍 ${BLUE}${public_ipv4}${NC}"
-        fi
-        if [ ! -z "$public_ipv6" ]; then
-            echo -e "  ${BOLD}IPv6 Address${NC}     📍 ${BLUE}${public_ipv6}${NC}"
-        fi
-        print_separator
-        
-        # ... (后面的代码保持不变)
-        
-        # Surge 配置
-        echo -e "${BOLD}${CYAN}📱 Client Configuration${NC}"
-        echo -e "  ${BOLD}[Snell]${NC}"
-        if [ ! -z "$public_ipv4" ]; then
-            echo -e "  server = ${public_ipv4}"
-        elif [ ! -z "$public_ipv6" ]; then
-            echo -e "  server = ${public_ipv6}"
-        fi
-        echo -e "  port = ${port}"
-        echo -e "  psk = ${psk}"
-        echo -e "  version = 4"
-        print_separator
-    fi
-}
 #!/bin/bash
 
 # 颜色和样式定义
@@ -264,8 +186,9 @@ EOF
 print_service_details() {
     if systemctl is-active --quiet ${SERVICE_NAME}; then
         local config_file="${CONFIG_DIR}/config.conf"
-        local port=$(grep "listen" "$config_file" | cut -d: -f2)
-        local psk=$(grep "psk" "$config_file" | cut -d= -f2 | tr -d ' ')
+        local port=$(grep "^listen" "$config_file" | cut -d: -f2 | tr -d ' ')
+        # 修改获取 PSK 的方式，使用 sed 保留完整字符串
+        local psk=$(grep "^psk" "$config_file" | sed 's/^psk *= *//;s/^ *//;s/ *$//')
         local public_ipv4=$(get_ip_address "ipv4")
         local public_ipv6=$(get_ip_address "ipv6")
 
