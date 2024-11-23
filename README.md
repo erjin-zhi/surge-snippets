@@ -1,35 +1,29 @@
-# surge-snippets
+# Surge Snippets
 
-## Snell 服务器安装指南
+这是一个 Surge 配置和脚本的集合仓库，包含了各种实用的配置片段和自动化脚本。
 
-### 快速安装
+## 目录
 
-执行以下命令安装 Snell 服务器:
+### 服务器脚本
+- [Snell 服务器](/snell-server) - Snell v4 服务器一键安装脚本
+  - 支持 IPv4/IPv6
+  - 自动生成配置
+  - 完整的服务管理功能
 
-```bash
-wget -O install.sh https://raw.githubusercontent.com/erjin-zhi/surge-snippets/main/snell-server/install-snell-v4.sh && chmod +x install.sh && ./install.sh
-```
+### 配置片段
+> 即将添加
 
-### 功能特点
+### 实用工具
+> 即将添加
 
-- ✨ 自动安装最新版本 Snell v4 服务器
-- 🔄 自动生成随机端口和密钥
-- 🌐 支持 IPv4/IPv6 双栈
-- 🚀 自动配置系统服务
-- 📱 自动生成 Surge 客户端配置
-- 💻 完整的服务管理功能
+## 贡献指南
 
-### 使用说明
+欢迎提交 Pull Request 来完善这个仓库。在提交之前，请确保：
 
-安装完成后，可以使用以下命令管理服务：
+1. 代码经过测试
+2. 提供清晰的文档说明
+3. 遵循项目的目录结构
 
-- 查看服务状态：`systemctl status snell-server`
-- 启动服务：`systemctl start snell-server`
-- 停止服务：`systemctl stop snell-server`
-- 重启服务：`systemctl restart snell-server`
-- 查看服务日志：`journalctl -u snell-server -f`
+## 许可证
 
-### 配置文件
-
-- 配置文件路径：`/etc/snell/config.conf`
-- 程序路径：`/usr/local/bin/snell-server`
+MIT License
