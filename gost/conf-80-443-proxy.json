@@ -1,0 +1,26 @@
+{
+    "services": [
+        {
+            "name": "sni-proxy-443",
+            "addr": ":443",
+            "handler": {
+                "type": "tcp",
+                "metadata": {
+                    "sniffing": true,
+                    "forward": "$sni:443"
+                }
+            }
+        },
+        {
+            "name": "http-proxy-80",
+            "addr": ":80",
+            "handler": {
+                "type": "tcp",
+                "metadata": {
+                    "sniffing": true,
+                    "forward": "$host:80"
+                }
+            }
+        }
+    ]
+}
