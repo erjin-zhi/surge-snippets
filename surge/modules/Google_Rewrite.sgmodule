@@ -1,4 +1,4 @@
-#!name=Google重定向
+#!name=Google Rewrite
 #!desc=CN谷歌重定向
 [URL Rewrite]
 ^https?:\/\/www\.g(oogle)?\.cn https://www.google.com 307
