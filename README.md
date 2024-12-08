@@ -11,10 +11,20 @@
   - 完整的服务管理功能
 
 ### 配置片段
-> 即将添加
+- [Google 重定向](/surge/modules/Google_Rewrite.sgmodule) - 将 Google CN 重定向到 Google.com
+  - 支持 www.g.cn 和 www.google.cn
+  - 自动 MITM 处理
 
-### 实用工具
-> 即将添加
+### 代理工具
+- [GOST 代理服务器](/gost) - 基于 GOST 的 SNI 代理服务器
+  - 支持 80/443 端口监听
+  - 自动 SNI/Host 识别转发
+  - 完整配置文档
+
+- [GRE 隧道](/gre) - Linux GRE 隧道配置教程
+  - 包含防火墙配置
+  - NAT 和转发规则设置
+  - 完整部署文档
 
 ## 贡献指南
 
