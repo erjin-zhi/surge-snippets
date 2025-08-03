@@ -7,7 +7,7 @@
 执行以下命令安装 Snell 服务器:
 
 ```bash
-mkdir -p snell-server && cd snell-server && wget -O install.sh https://raw.githubusercontent.com/erjin-zhi/surge-snippets/main/snell-server/install-snell-v4.sh && chmod +x install.sh && ./install.sh
+mkdir -p snell-server && cd snell-server && wget -O install.sh https://raw.githubusercontent.com/erjin-zhi/surge-snippets/main/snell-server/install-snell.sh && chmod +x install.sh && ./install.sh
 ```
 
 ## 功能特点
