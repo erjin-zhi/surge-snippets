@@ -1,6 +1,6 @@
 # Snell 服务器安装指南
 
-自动安装和配置 Snell v4 服务器的脚本。
+自动安装和配置 Snell 服务器的脚本。
 
 ## 快速安装
 
@@ -12,7 +12,7 @@ mkdir -p snell-server && cd snell-server && wget -O install.sh https://raw.githu
 
 ## 功能特点
 
-- ✨ 自动安装最新版本 Snell v4 服务器
+- ✨ 自动安装最新版本 Snell 服务器
 - 🔄 自动生成随机端口和密钥
 - 🌐 支持 IPv4/IPv6 双栈
 - 🚀 自动配置系统服务
