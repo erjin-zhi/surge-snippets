@@ -11,7 +11,8 @@ BOLD='\033[1m'
 NC='\033[0m'
 
 # 配置变量
-SNELL_VERSION="v5.0.0"
+SNELL_VERSION="v5.0.1"
+SNELL_PROTOCOL_VERSION="5"
 DOWNLOAD_URL="https://dl.nssurge.com/snell/snell-server-${SNELL_VERSION}-linux-amd64.zip"
 INSTALL_DIR="/usr/local/bin"
 CONFIG_DIR="/etc/snell"
@@ -228,7 +229,7 @@ print_service_details() {
         fi
         echo -e "  port = ${port}"
         echo -e "  psk = ${psk}"
-        echo -e "  version = 4"
+        echo -e "  version = ${SNELL_PROTOCOL_VERSION}"
         print_separator
     else
         print_title "❌ SNELL SERVER STATUS"

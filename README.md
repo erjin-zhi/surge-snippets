@@ -5,9 +5,10 @@
 ## 目录
 
 ### 服务器脚本
-- [Snell 服务器](/snell-server) - Snell v4 服务器一键安装脚本
+- [Snell 服务器](/snell-server) - Snell v5 服务器一键安装脚本
   - 支持 IPv4/IPv6
   - 自动生成配置
+  - 自动输出 Surge `version = 5` 客户端配置
   - 完整的服务管理功能
 
 ### 配置片段
